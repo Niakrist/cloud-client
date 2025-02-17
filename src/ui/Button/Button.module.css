@@ -1,0 +1,11 @@
+.button {
+  padding: 5px 25px;
+  background-color: #566885;
+  border-radius: 12px;
+  font-family: inherit;
+  font-weight: 700;
+  font-size: 22px;
+  color: #fff;
+  align-self: flex-end;
+  cursor: pointer;
+}

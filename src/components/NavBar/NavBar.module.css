@@ -1,0 +1,41 @@
+.navbar {
+  padding: 10px 0;
+  box-shadow: 0 3px 4px 0 rgba(92, 92, 92, 0.25);
+  background: #fff;
+}
+
+.container {
+  max-width: 1060px;
+  margin: 0 auto;
+  padding: 0 20px;
+
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.logoWrapper {
+  display: flex;
+  align-items: center;
+  column-gap: 16px;
+}
+
+.navbarHeader {
+  font-weight: 700;
+  font-size: 20px;
+  color: #566885;
+}
+
+.controlsWrapper {
+  display: flex;
+  align-items: center;
+  column-gap: 30px;
+}
+
+.navbarLogin,
+.navbarRegistration {
+  font-weight: 700;
+  font-size: 20px;
+  color: #566885;
+  cursor: pointer;
+}

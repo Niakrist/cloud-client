@@ -1,0 +1,19 @@
+.input {
+  width: 470px;
+  padding: 5px;
+  font-family: inherit;
+  font-weight: 700;
+  font-size: 18px;
+  border: none;
+  outline: none;
+  border-bottom: 4px solid #566885;
+}
+
+.input::placeholder {
+  color: #566885;
+}
+
+.label {
+  /* width: 100%;
+  background: #566885; */
+}
