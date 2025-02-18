@@ -1,25 +1,38 @@
 import React from "react";
+import { useEffect } from "react";
 import { useState } from "react";
-import { registration } from "../../actions/user";
+import { useDispatch, useSelector } from "react-redux";
+import { userLogin } from "../../store/userSlice/userSlice";
+
 import Button from "../../ui/Button/Button";
 import InputText from "../../ui/InputText/InputText";
-import styles from "./Registration.module.css";
-const Registration = () => {
+
+import styles from "./Login.module.css";
+
+const Login = () => {
   const [data, setData] = useState({ email: "", password: "" });
+
+  const { errorUser } = useSelector((state) => state.user);
+
+  const dispatch = useDispatch();
 
   const handleChange = ({ target }) => {
     const { name, value } = target;
     setData((prevData) => ({ ...prevData, [name]: value }));
   };
 
-  const handleRegistration = (e) => {
+  const handleLogin = (e) => {
     e.preventDefault();
-    registration(data.email, data.password);
+    dispatch(userLogin({ email: data.email, password: data.password }));
   };
 
+  useEffect(() => {
+    console.log("errorUser: ", errorUser);
+  }, [errorUser]);
+
   return (
-    <div className={styles.registration}>
-      <h2 className={styles.title}>Регистрация</h2>
+    <div className={styles.login}>
+      <h2 className={styles.title}>Авторизация</h2>
       <form className={styles.form}>
         <InputText
           id="email"
@@ -37,10 +50,10 @@ const Registration = () => {
           onChange={handleChange}
           placeholder={"Введите пароль..."}
         />
-        <Button onClick={handleRegistration}>Зарегистрироваться</Button>
+        <Button onClick={handleLogin}>Войти</Button>
       </form>
     </div>
   );
 };
 
-export default Registration;
+export default Login;

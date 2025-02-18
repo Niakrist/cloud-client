@@ -9,9 +9,20 @@ export const registration = async (email, password) => {
         password,
       }
     );
-    console.log("respone.data: ", respone.data);
     alert(respone.data.message);
   } catch (error) {
-    console.log(error.respone.data.message);
+    alert(error.message);
   }
 };
+
+// export const login = async (email, password) => {
+//   try {
+//     const response = await axios.post("http://localhost:4000/api/user/login", {
+//       email,
+//       password,
+//     });
+//     console.log();
+//   } catch (error) {
+//     console.log("ERROR: ", error);
+//   }
+// };

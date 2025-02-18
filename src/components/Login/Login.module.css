@@ -1,0 +1,21 @@
+.login {
+  margin: auto;
+  padding: 25px 40px;
+  background-color: #fff;
+  border-radius: 30px;
+  box-shadow: 4px 4px 4px 0 rgba(92, 92, 92, 0.25);
+}
+
+.title {
+  margin-bottom: 25px;
+
+  font-weight: 700;
+  font-size: 28px;
+  color: #566885;
+}
+
+.form {
+  display: flex;
+  flex-direction: column;
+  row-gap: 24px;
+}
