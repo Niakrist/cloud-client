@@ -26,10 +26,6 @@ const Login = () => {
     dispatch(userLogin({ email: data.email, password: data.password }));
   };
 
-  useEffect(() => {
-    console.log("errorUser: ", errorUser);
-  }, [errorUser]);
-
   return (
     <div className={styles.login}>
       <h2 className={styles.title}>Авторизация</h2>

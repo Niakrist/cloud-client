@@ -12,13 +12,29 @@ export const userLogin = createAsyncThunk(
           password,
         }
       );
+      localStorage.setItem("token", response.data.token);
+      return response.data;
+    } catch (error) {
+      return rejectWithValue(error.response.data);
+    }
+  }
+);
+
+export const userAuth = createAsyncThunk(
+  "user/userAuth",
+  async (_, { rejectWithValue }) => {
+    try {
+      const response = await axios.get("http://localhost:4000/api/user/auth", {
+        headers: { Authorization: `Bearer ${localStorage.getItem("token")}` },
+      });
 
       console.log("response: ", response);
 
       localStorage.setItem("token", response.data.token);
       return response.data;
     } catch (error) {
-      console.log("AxiosError!!!: ", error.response.data.message);
+      console.log("error: ", error);
+      localStorage.removeItem("token");
       return rejectWithValue(error.response.data);
     }
   }
@@ -34,7 +50,7 @@ const userSlice = createSlice({
   },
   reducers: {
     logOut: (state) => {
-      localStorage.clear("token");
+      localStorage.removeItem("token");
       state.currentUser = {};
       state.isAuth = false;
     },
@@ -52,7 +68,21 @@ const userSlice = createSlice({
         state.isAuth = true;
       })
       .addCase(userLogin.rejected, (state, action) => {
-        console.log("action: ", action);
+        state.loadingUser = false;
+        state.isAuth = false;
+        state.errorUser = action.payload;
+      })
+      .addCase(userAuth.pending, (state) => {
+        state.loadingUser = true;
+        state.errorUser = null;
+        state.isAuth = false;
+      })
+      .addCase(userAuth.fulfilled, (state, action) => {
+        state.loadingUser = false;
+        state.currentUser = action.payload;
+        state.isAuth = true;
+      })
+      .addCase(userAuth.rejected, (state, action) => {
         state.loadingUser = false;
         state.isAuth = false;
         state.errorUser = action.payload;
